@@ -5,10 +5,10 @@ import Footer from './components/Footer.vue'
 
 <template>
   <main class="flex flex-row min-h-screen p-5 bg-cover bg-no-repeat bg-center" style="background-image: url('https://i.imgur.com/9yt5WWI.jpg');">
-    <section class="basis-1/2 flex items-center justify-center pl-6 pr-48">
+    <section class="basis-1/3 flex items-center justify-center">
       <Card />
     </section>
-    <section class="basis-1/2"></section>
+    <section class="basis-2/3"></section>
   </main>
   <Footer />
 </template>

@@ -1,22 +1,19 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import FileInput from './FileInput.vue';
-
-const selectedInput = ref('file');
-
-defineEmits(['file-select', 'start-loop']);
+const itemsCount = ref(0);
+defineEmits(['file-select']);
 </script>
 
 <template>
-  <div>
-    <h3 class="text-lg font-semibold mb-4">Input</h3>
-    <span class="text-xs">Upload a file and we will divide items for enumeration.</span>
-    <div class="px-4 rounded mb-6">
-      <FileInput 
-        v-if="selectedInput === 'file'" 
-        class="mt-4"
-        @file-select="$emit('file-select', $event)" 
-      />
+  <div class="mb-6">
+    <h3 class="text-lg font-semibold">Input</h3>
+    <span class="text-xs">We will divide up the input into items for enumeration automagically based on file type.</span>
+    <div>
+      <span class="text-xs">{{itemsCount}} Items detected</span>
+    </div>
+    <div class="px-4 rounded">
+      <FileInput  class="mt-4" @file-select="$emit('file-select', $event)" />
     </div>
   </div>
 </template>

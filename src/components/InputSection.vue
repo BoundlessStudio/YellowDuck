@@ -1,19 +1,16 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import FileInput from './FileInput.vue';
-const itemsCount = ref(0);
-defineEmits(['file-select']);
 </script>
 
 <template>
   <div class="mb-6">
     <h3 class="text-lg font-semibold">Input</h3>
-    <span class="text-xs">We will divide up the input into items for enumeration automagically based on file type.</span>  
-    <div class="px-4 rounded">
-      <FileInput  class="mt-4" @file-select="$emit('file-select', $event)" />
-    </div>
-    <div>
-      <span class="text-xs">{{itemsCount}} Items detected</span>
+    <span class="text-xs">Enter your text below. We'll process each line as a separate item for enumeration.</span>  
+    <div class="p-4 rounded ">
+      <textarea 
+        placeholder="Enter your items here..."
+        rows="5" 
+        class="w-full bg-slate-50 border border-gray-600 rounded p-2 focus:outline-none focus:border-gray-400 transition-colors"
+      ></textarea>
     </div>
   </div>
 </template>

@@ -7,6 +7,7 @@
     <span class="text-xs">The task for the AI to perform in each iteration.</span>
     <div class="p-4 rounded ">
       <textarea 
+        placeholder="Enter your instructions here..."
         rows="5" 
         class="w-full bg-slate-50 border border-gray-600 rounded p-2 focus:outline-none focus:border-gray-400 transition-colors"
       ></textarea>

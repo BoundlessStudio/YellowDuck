@@ -5,10 +5,10 @@
   <div class="mb-6">
     <h3 class="text-lg font-semibold">Instructions</h3>
     <span class="text-xs">The task for the AI to perform in each iteration.</span>
-    <div class="p-4 rounded ">
+    <div class="py-4 rounded ">
       <textarea 
         placeholder="Enter your instructions here..."
-        rows="5" 
+        rows="3" 
         class="w-full bg-slate-50 border border-gray-600 rounded p-2 focus:outline-none focus:border-gray-400 transition-colors"
       ></textarea>
     </div>

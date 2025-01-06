@@ -7,6 +7,7 @@ export const useIterateStore = defineStore('iterate', {
     return {
       interval: 0,
       state: 'Pending' as State,
+      index: 0,
       input: '',
       output: [] as string[],
     }
@@ -16,7 +17,7 @@ export const useIterateStore = defineStore('iterate', {
       return state.input.split("\n")
     },
     progress(state): number {
-      return this.collection.length == 0 ? 0 :(state.output.length / this.collection.length) * 100 
+      return (state.index / this.collection.length) * 100
     },
     isPending (state): boolean {
       return state.state === 'Pending';
@@ -39,9 +40,11 @@ export const useIterateStore = defineStore('iterate', {
   },
   actions: {
     next() {
-      this.output.push('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
-      if(this.output.length >= this.collection.length) {
+      // TODO Fetch Status from API and update index and state
+      this.index++
+      if(this.index >= this.collection.length) {
         clearInterval(this.interval)
+        this.output = new Array(this.collection.length).fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
         this.state = 'Completed'
       }
     },
@@ -56,6 +59,7 @@ export const useIterateStore = defineStore('iterate', {
     reset() {
       clearInterval(this.interval)
       this.state = 'Pending'
+      this.index = 0
       this.input = ''
       this.output = []
     },

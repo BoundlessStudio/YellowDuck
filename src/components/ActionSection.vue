@@ -16,7 +16,13 @@ const iterate = useIterateStore()
         </button>
       </div>
       <div v-if="iterate.isPending" class="w-full">
-        <button @click="iterate.start" class="py-2 px-6 w-full rounded transition-colors inline-flex items-center justify-center bg-green-600 hover:bg-green-700 text-white">
+        <button 
+          @click="iterate.start" 
+          :disabled="iterate.isLocked" 
+          :class="[
+            'py-2 px-6 w-full rounded transition-colors inline-flex items-center justify-center bg-green-600 hover:bg-green-700 text-white', 
+            iterate.isLocked ? 'opacity-50 cursor-not-allowed' : ''
+        ]">
           <span>Start</span>
         </button>
       </div>

@@ -2,10 +2,10 @@
 </script>
 
 <template>
-  <div class="mb-6">
+  <div class="mb-8">
     <h3 class="text-lg font-semibold">Instructions</h3>
     <span class="text-xs">The task for the AI to perform in each iteration.</span>
-    <div class="py-4 rounded ">
+    <div class="pt-4 rounded ">
       <textarea 
         placeholder="Enter your instructions here..."
         rows="3" 

@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useIterateStore } from '@/stores/iterate'
+
+const iterate = useIterateStore()
+
 </script>
 
 <template>
@@ -7,6 +11,7 @@
     <span class="text-xs">Enter your text below. We'll process each line as a separate item for enumeration.</span>  
     <div class="p-4 rounded ">
       <textarea 
+        v-model="iterate.input"
         placeholder="Enter your items here..."
         rows="5" 
         class="w-full bg-slate-50 border border-gray-600 rounded p-2 focus:outline-none focus:border-gray-400 transition-colors"

@@ -11,7 +11,7 @@ defineProps<{
       :style="{ width: `${progress}%` }"
     ></div>
     <div class="text-center">
-      <span class="text-xs">{{ progress }}%</span>
+      <span class="text-xs">{{ progress.toFixed(0) }}%</span>
     </div>
     
   </div>

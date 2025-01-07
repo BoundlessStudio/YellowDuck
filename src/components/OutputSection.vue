@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useIterateStore } from '@/stores/iterate'
+import Markdown from 'vue3-markdown-it';
 
 const iterate = useIterateStore()
 </script>
@@ -12,9 +13,11 @@ const iterate = useIterateStore()
       <span v-if="iterate.isTerminated" class="text-xs text-amber-500">Canceled</span>
       <span v-if="iterate.isFailed" class="text-xs text-red-500">Error</span>
       <div class="mt-4">
-        <ul class="list-decimal list-inside">
+        <ul class="list-none">
           <template v-for="(chunk, i) in iterate.output" :key="i">
-            <li :data-index="i">{{chunk}}</li>
+            <li :data-index="i" class="odd:bg-zinc-100 even:bg-zinc-300 my-2 p-2">
+              <Markdown :source="chunk" />
+            </li>
           </template>
         </ul>
       </div>

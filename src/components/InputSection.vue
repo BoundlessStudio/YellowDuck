@@ -17,7 +17,7 @@ const style = computed(() => {
 
 <template>
   <div class="mb-10">
-    <h3 class="text-lg font-semibold">Input</h3>
+    <h3 class="text-lg font-semibold">Input Collection</h3>
     <span class="text-xs">Enter your text below. We'll process each line as a separate item for enumeration.</span>  
     <div class="pt-4 rounded ">
       <textarea 

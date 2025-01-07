@@ -17,5 +17,4 @@ const iterate = useIterateStore()
       ></textarea>
     </div>
   </div>
-  
 </template>

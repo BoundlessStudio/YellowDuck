@@ -15,7 +15,7 @@ const iterate = useIterateStore()
           Stop
         </button>
       </div>
-      <div v-if="iterate.isPending" class="w-full">
+      <div v-if="iterate.isPending || iterate.isDone" class="w-full">
         <button 
           @click="iterate.start" 
           :disabled="iterate.isLocked" 

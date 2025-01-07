@@ -9,7 +9,7 @@ export const useIterateStore = defineStore('iterate', {
     return {
       id: '',
       interval: 0,
-      limit: 1000,
+      limit: 100,
       state: 'Pending' as State,
       progress: 0,
       instructions: '',
@@ -19,7 +19,11 @@ export const useIterateStore = defineStore('iterate', {
   },
   getters: {
     collection(state): string[] {
-      return state.input.split("\n")
+      const collection = state.input.split("\n")
+      if(collection.length === 1)
+        return collection[0].split(",")
+      else
+        return collection
     },
     group(state): number {
       let collection = state.input.split("\n")
@@ -64,8 +68,6 @@ export const useIterateStore = defineStore('iterate', {
       .then(data => {
         this.state = data.runtimeStatus
         this.progress = data?.customStatus?.progress || 0
-
-        console.log('Iterator', this.progress)
 
         switch(this.state) {
           case 'Completed':

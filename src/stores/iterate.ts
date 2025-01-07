@@ -2,13 +2,17 @@ import { defineStore } from 'pinia'
 
 type State = 'Pending' | 'Running' | 'Completed' | 'Failed' | 'Terminated'
 
+const URL_BASE = import.meta.env.VITE_API_URL
+
 export const useIterateStore = defineStore('iterate', {
   state: () => {
     return {
+      id: '',
       interval: 0,
-      limit: 100,
+      limit: 1000,
       state: 'Pending' as State,
-      index: 0,
+      progress: 0,
+      instructions: '',
       input: '',
       output: [] as string[],
     }
@@ -29,11 +33,7 @@ export const useIterateStore = defineStore('iterate', {
     isLocked(state): boolean | undefined {
       let collection = state.input.split("\n")
       let lock = collection.length >= state.limit ? true : undefined
-      console.log('lock',lock)
       return lock
-    },
-    progress(state): number {
-      return Math.min((state.index / this.collection.length) * 100, 100)
     },
     isPending (state): boolean {
       return state.state === 'Pending';
@@ -56,29 +56,78 @@ export const useIterateStore = defineStore('iterate', {
   },
   actions: {
     next() {
-      // TODO Fetch Status from API and update index and state
-      this.index++
-      if(this.index >= this.collection.length) {
+      fetch(`${URL_BASE}/runtime/webhooks/durabletask/instances/${this.id}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .then(response => response.json())
+      .then(data => {
+        this.state = data.runtimeStatus
+        this.progress = data?.customStatus?.progress || 0
+
+        console.log('Iterator', this.progress)
+
+        switch(this.state) {
+          case 'Completed':
+            this.output = data.output
+            this.progress = 100
+            clearInterval(this.interval)
+            break
+          case 'Failed':
+            clearInterval(this.interval)
+            break
+          case 'Terminated':
+            clearInterval(this.interval)
+            break
+          default:
+            break
+        }
+      })
+      .catch(error => {
         clearInterval(this.interval)
-        this.output = new Array(this.collection.length).fill('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
-        this.state = 'Completed'
-      }
+        console.error('Error:', error)
+      });
     },
     start() {
-      this.state = 'Running'
-      this.interval = setInterval(() => this.next(), 10)
+      fetch(`${URL_BASE}/api/Iterator_Start`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          values: this.collection,
+          instructions: this.instructions
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        const { Id } = data;
+
+        console.log('IteratorStart', data)
+       
+        this.id = Id
+        this.interval = setInterval(() => this.next(), 1000)
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
     },
     stop() {
-      clearInterval(this.interval)
-      this.state = 'Terminated'
+      fetch(`${URL_BASE}/runtime/webhooks/durabletask/instances/${this.id}/terminate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .catch(error => {
+        console.error('Error:', error)
+        clearInterval(this.interval)
+      });
     },
     reset() {
       clearInterval(this.interval)
       this.state = 'Pending'
-      this.index = 0
+      this.progress = 0
+      this.id = ''
+      this.instructions = ''
       this.input = ''
       this.output = []
-    },
-    
+    }
   },
 })

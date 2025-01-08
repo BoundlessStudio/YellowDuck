@@ -8,7 +8,7 @@ export const useIterateStore = defineStore('iterate', {
   state: () => {
     return {
       id: '',
-      interval: 0,
+      interval: undefined as NodeJS.Timeout | undefined,
       limit: 100,
       state: 'Pending' as State,
       progress: 0,

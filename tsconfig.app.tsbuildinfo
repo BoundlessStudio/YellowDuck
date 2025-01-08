@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/stores/iterate.ts","./src/app.vue","./src/components/actionsection.vue","./src/components/footer.vue","./src/components/headersection.vue","./src/components/inputsection.vue","./src/components/instructionssection.vue","./src/components/outputsection.vue","./src/components/progressbar.vue"],"version":"5.7.2"}

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useIterateStore } from '@/stores/iterate'
+// @ts-ignore
 import Markdown from 'vue3-markdown-it';
-
+import { useIterateStore } from '@/stores/iterate'
 const iterate = useIterateStore()
 </script>
 

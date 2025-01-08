@@ -105,9 +105,6 @@ export const useIterateStore = defineStore('iterate', {
       .then(response => response.json())
       .then(data => {
         const { Id } = data;
-
-        console.log('IteratorStart', data)
-       
         this.id = Id
         this.interval = setInterval(() => this.next(), 1000)
       })

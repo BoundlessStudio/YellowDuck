@@ -1,4 +1,4 @@
-import { toast, ToastOptions } from "vue3-toastify";
+//import { toast, ToastOptions } from "vue3-toastify";
 import { defineStore } from 'pinia'
 
 type State = 'Pending' | 'Running' | 'Completed' | 'Failed' | 'Terminated'
@@ -6,16 +6,11 @@ type State = 'Pending' | 'Running' | 'Completed' | 'Failed' | 'Terminated'
 const URL_BASE = 'https://03600f7f7081.ngrok.app' //import.meta.env.VITE_API_URL
 const API_CODE = import.meta.env.VITE_API_CODE
 
-const TOAST_ERROR_CONFIG = {
-  "theme": "auto",
-  "type": "error",
-  "transition": "slide"
-} as ToastOptions;
-
-const TOAST_CONFIG = {
-  "theme": "auto",
-  "transition": "slide"
-} as ToastOptions;
+// const TOAST_ERROR_CONFIG = {
+//   "theme": "auto",
+//   "type": "error",
+//   "transition": "slide"
+// } as ToastOptions;
 
 export const useIterateStore = defineStore('iterate', {
   state: () => {
@@ -145,7 +140,8 @@ export const useIterateStore = defineStore('iterate', {
             message = 'Error: Something Unexpected.';
             break;
         }
-        toast(message, TOAST_ERROR_CONFIG)
+        console.error('Error:', message)
+        //toast(message, TOAST_ERROR_CONFIG)
       });
     },
     stop() {

@@ -3,7 +3,7 @@
     <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
       <div class="md:flex md:justify-between">
         <div class="mb-6 md:mb-0">
-          <a href="https://iterator.one/" class="flex items-center">
+          <a href="/" class="flex items-center">
             <img src="https://i.imgur.com/QOhBhO1.png" class="h-8 me-2" alt="Iterator Logo" />
             <span class="self-center text-2xl whitespace-nowrap dark:text-white" style="font-family: 'Luckiest Guy';">Iterator.one</span>
           </a>
@@ -12,9 +12,9 @@
           <div>
             <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
             <ul class="text-gray-400 font-medium">
-              <li class="mb-4"><a href="#" class="hover:underline">Subscriptions</a></li>
-              <li class="mb-4"><a href="#" class="hover:underline">Documentation</a></li>
-              <li><a href="#" class="hover:underline">FAQs</a></li>
+              <li class="mb-4"><RouterLink to="/subscriptions" class="hover:underline">Subscriptions</RouterLink></li>
+              <li class="mb-4"><RouterLink to="/docs" class="hover:underline">Documentation</RouterLink></li>
+              <li><RouterLink to="/faqs" class="hover:underline">FAQs</RouterLink></li>
             </ul>
           </div>
           <div>
@@ -28,8 +28,8 @@
           <div>
             <h2 class="mb-6 text-sm font-semibold uppercase text-white">Legal</h2>
             <ul class="text-gray-400 font-medium">
-              <li class="mb-4"><a href="#" class="hover:underline">Privacy Policy</a></li>
-              <li><a href="#" class="hover:underline">Terms &amp; Conditions</a></li>
+              <li class="mb-4"><RouterLink to="/privacy" class="hover:underline">Privacy Policy</RouterLink></li>
+              <li><RouterLink to="/terms" class="hover:underline">Terms &amp; Conditions</RouterLink></li>
             </ul>
           </div>
         </div>

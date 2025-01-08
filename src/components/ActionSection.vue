@@ -1,41 +1,50 @@
 <script setup lang="ts">
-import { toast } from "vue3-toastify";
-import "vue3-toastify/dist/index.css";
-
 import ProgressBar from '@/components/ProgressBar.vue';
 import { useIterateStore } from '@/stores/iterate'
 import { ref } from 'vue';
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 
 const iterate = useIterateStore()
 const isLocked = ref(false)
 
-const start = () => {
+const error_toast = (error: string) => {
+  toast(error, { "theme": "auto", "type": "error" })
+}
+
+const start = async () => {
   isLocked.value = true
-  setTimeout(() => {
-    isLocked.value = false
-  }, 1000)
-  iterate.start().catch(error => {
-    let message = '';
-    switch (error.status) {
-      case 401:
-        message = 'Unauthorized: Access denied.';
-        break;
-      case 429:
-        message = 'Timeout: Try again in 1 hour.';
-        break;
-      case 500:
-        message = 'Error: We messed up.';
-        break;
-      default:
-        message = 'Error: Something Unexpected.';
-        break;
+  try {
+    await iterate.start()
+  } catch(error) {
+    
+    if(error instanceof Error) {
+      error_toast("Error: " + error.message)
     }
-    console.error('Error:', message)
-    toast(message, {
-        "theme": "auto",
-        "type": "error"
-    })
-  });
+
+    if(error instanceof Response) {
+      let message = '';
+      switch (error.status) {
+        case 401:
+          message = 'Unauthorized: Access denied.';
+          break;
+        case 429:
+          message = 'Timeout: Try again in 1 hour.';
+          break;
+        case 500:
+          message = 'Error: We messed up.';
+          break;
+        default:
+          message = 'Error: Something Unexpected.';
+          break;
+      }
+      error_toast(message)
+    }
+
+    console.error('Error', error)
+  } finally {
+    isLocked.value = false
+  }
 }
 </script>
 
@@ -52,10 +61,10 @@ const start = () => {
       <div v-if="iterate.isPending || iterate.isDone" class="w-full">
         <button 
           @click="start" 
-          :disabled="iterate.isLocked || isLocked" 
+          :disabled="isLocked" 
           :class="[
             'py-2 px-6 w-full rounded transition-colors inline-flex items-center justify-center disabled:bg-zinc-500 bg-green-600 hover:bg-green-700 text-white', 
-            iterate.isLocked ? 'opacity-50 cursor-not-allowed' : ''
+            isLocked ? 'opacity-50 cursor-not-allowed' : ''
         ]">
           <span>Start</span>
         </button>

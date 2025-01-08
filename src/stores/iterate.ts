@@ -94,6 +94,19 @@ export const useIterateStore = defineStore('iterate', {
       });
     },
     start() {
+      if(this.isLocked === true) {
+        throw new Error('Exceeds enumeration limit.')
+      }
+      if(this.collection.length === 0) {
+        throw new Error('Input Collection is blank.')
+      }
+      if(this.collection.length === 1 && this.collection[0] === '') {
+        throw new Error('Input Collection is blank.')
+      }
+      if(this.instructions === '') {
+        throw new Error('Instructions is blank.')
+      }
+
       return fetch(`${URL_BASE}/api/Iterator_Start`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

@@ -1,22 +1,18 @@
 <script setup lang="ts">
 import ProgressBar from '@/components/ProgressBar.vue';
 import { useIterateStore } from '@/stores/iterate'
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 
 const iterate = useIterateStore()
-
 const isLocked = ref(false)
 
 const start = () => {
   isLocked.value = true
   iterate.start()
-}
-
-watch(() => iterate.isRunning, (value) => {
-  if(value) {
+  setTimeout(() => {
     isLocked.value = false
-  }
-})
+  }, 1000)
+}
 
 </script>
 

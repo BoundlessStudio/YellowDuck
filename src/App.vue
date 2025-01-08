@@ -23,6 +23,7 @@ import Footer from '@/components/Footer.vue'
       <section class="lg:basis-2/3 flex items-stretch justify-center p-6">
         <OutputSection />
       </section>
+      
     </main>
     <Footer />
   </div>

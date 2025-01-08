@@ -1,5 +1,8 @@
-# Vue 3 + TypeScript + Vite
+# Yellow Duck
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+[Iterator.one](https://iterator.one)
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+Ai enumeration to the end of the iterator, guaranteed!
+
+Are you tired of artificial intelligence being lazy, are you tired of truncated results, are you tired of enumeration?
+We created this project to solve one of the major issues that still exist with current AI chat bots and allow you to have hands free enumeration of the complete iterator regardless if it is a collection of 10, 100, or 10K.

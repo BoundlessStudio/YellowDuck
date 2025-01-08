@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
+
 import ProgressBar from '@/components/ProgressBar.vue';
 import { useIterateStore } from '@/stores/iterate'
 import { ref } from 'vue';
@@ -8,12 +11,32 @@ const isLocked = ref(false)
 
 const start = () => {
   isLocked.value = true
-  iterate.start()
   setTimeout(() => {
     isLocked.value = false
   }, 1000)
+  iterate.start().catch(error => {
+    let message = '';
+    switch (error.status) {
+      case 401:
+        message = 'Unauthorized: Access denied.';
+        break;
+      case 429:
+        message = 'Timeout: Try again in 1 hour.';
+        break;
+      case 500:
+        message = 'Error: We messed up.';
+        break;
+      default:
+        message = 'Error: Something Unexpected.';
+        break;
+    }
+    console.error('Error:', message)
+    toast(message, {
+        "theme": "auto",
+        "type": "error"
+    })
+  });
 }
-
 </script>
 
 <template>

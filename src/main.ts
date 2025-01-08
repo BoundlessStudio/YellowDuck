@@ -1,9 +1,9 @@
-import './style.css'
-//import "vue3-toastify/dist/index.css";
-
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+
 import App from './App.vue'
+
+import './style.css'
 
 const pinia = createPinia()
 const app = createApp(App)

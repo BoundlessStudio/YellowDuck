@@ -1,16 +1,9 @@
-//import { toast, ToastOptions } from "vue3-toastify";
 import { defineStore } from 'pinia'
 
 type State = 'Pending' | 'Running' | 'Completed' | 'Failed' | 'Terminated'
 
-const URL_BASE = 'https://03600f7f7081.ngrok.app' //import.meta.env.VITE_API_URL
+const URL_BASE = import.meta.env.VITE_API_URL
 const API_CODE = import.meta.env.VITE_API_CODE
-
-// const TOAST_ERROR_CONFIG = {
-//   "theme": "auto",
-//   "type": "error",
-//   "transition": "slide"
-// } as ToastOptions;
 
 export const useIterateStore = defineStore('iterate', {
   state: () => {
@@ -101,7 +94,7 @@ export const useIterateStore = defineStore('iterate', {
       });
     },
     start() {
-      fetch(`${URL_BASE}/api/Iterator_Start`, {
+      return fetch(`${URL_BASE}/api/Iterator_Start`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -121,31 +114,10 @@ export const useIterateStore = defineStore('iterate', {
         this.id = Id
         this.interval = setInterval(() => this.next(), 1000)
         this.next()
-      })
-      .catch(error => {
-        this.id = ''
-
-        let message = '';
-        switch (error.status) {
-          case 401:
-            message = 'Unauthorized: Access denied.';
-            break;
-          case 429:
-            message = 'Timeout: Try again in 1 hour.';
-            break;
-          case 500:
-            message = 'Error: We messed up.';
-            break;
-          default:
-            message = 'Error: Something Unexpected.';
-            break;
-        }
-        console.error('Error:', message)
-        //toast(message, TOAST_ERROR_CONFIG)
       });
     },
     stop() {
-      fetch(`${URL_BASE}/runtime/webhooks/durabletask/instances/${this.id}/terminate?reason=Canceled&code=${API_CODE}`, {
+      return fetch(`${URL_BASE}/runtime/webhooks/durabletask/instances/${this.id}/terminate?reason=Canceled&code=${API_CODE}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
       })

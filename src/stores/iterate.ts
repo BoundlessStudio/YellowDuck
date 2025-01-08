@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 type State = 'Pending' | 'Running' | 'Completed' | 'Failed' | 'Terminated'
 
 const URL_BASE = import.meta.env.VITE_API_URL
+const API_CODE = import.meta.env.VITE_API_CODE
 
 export const useIterateStore = defineStore('iterate', {
   state: () => {
@@ -15,6 +16,8 @@ export const useIterateStore = defineStore('iterate', {
       instructions: '',
       input: '',
       output: [] as string[],
+      status_url: '',
+      status_terminate: '',
     }
   },
   getters: {
@@ -60,7 +63,7 @@ export const useIterateStore = defineStore('iterate', {
   },
   actions: {
     next() {
-      fetch(`${URL_BASE}/runtime/webhooks/durabletask/instances/${this.id}`, {
+      fetch(`${URL_BASE}/runtime/webhooks/durabletask/instances/${this.id}?code=${API_CODE}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
       })
@@ -113,7 +116,7 @@ export const useIterateStore = defineStore('iterate', {
       });
     },
     stop() {
-      fetch(`${URL_BASE}/runtime/webhooks/durabletask/instances/${this.id}/terminate`, {
+      fetch(`${URL_BASE}/runtime/webhooks/durabletask/instances/${this.id}/terminate?reason=Canceled&code=${API_CODE}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
       })

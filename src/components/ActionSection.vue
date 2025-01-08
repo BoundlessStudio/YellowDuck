@@ -1,8 +1,23 @@
 <script setup lang="ts">
 import ProgressBar from '@/components/ProgressBar.vue';
 import { useIterateStore } from '@/stores/iterate'
+import { ref, watch } from 'vue';
 
 const iterate = useIterateStore()
+
+const isLocked = ref(false)
+
+const start = () => {
+  isLocked.value = true
+  iterate.start()
+}
+
+watch(() => iterate.isRunning, (value) => {
+  if(value) {
+    isLocked.value = false
+  }
+})
+
 </script>
 
 <template>
@@ -17,10 +32,10 @@ const iterate = useIterateStore()
       </div>
       <div v-if="iterate.isPending || iterate.isDone" class="w-full">
         <button 
-          @click="iterate.start" 
-          :disabled="iterate.isLocked" 
+          @click="start" 
+          :disabled="iterate.isLocked || isLocked" 
           :class="[
-            'py-2 px-6 w-full rounded transition-colors inline-flex items-center justify-center bg-green-600 hover:bg-green-700 text-white', 
+            'py-2 px-6 w-full rounded transition-colors inline-flex items-center justify-center disabled:bg-zinc-500 bg-green-600 hover:bg-green-700 text-white', 
             iterate.isLocked ? 'opacity-50 cursor-not-allowed' : ''
         ]">
           <span>Start</span>

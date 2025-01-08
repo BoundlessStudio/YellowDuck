@@ -28,7 +28,7 @@ const style = computed(() => {
       ></textarea>
     </div>
     <div class="relative">
-      <input id="labels-range-input" type="range" disabled :value="iterate.group" min="0" max="4" step="0.01" :class="['w-full h-2 rounded-lg appearance-none cursor-pointer', style]">
+      <input id="labels-range-input" type="range" disabled :value="iterate.group" min="0" max="4" step="0.01" :class="['w-full h-2 rounded-lg appearance-none range-lg', style]">
       <div class="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">
         <span>1</span>
       </div>
@@ -56,3 +56,34 @@ const style = computed(() => {
     </div>
   </div>
 </template>
+
+<style scoped>
+  #labels-range-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #4a4a4d;
+    cursor: pointer;
+    border: 2px solid #fff;
+  }
+
+  #labels-range-input::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #4a4a4d;
+    cursor: pointer;
+    border: 2px solid #fff;
+  }
+
+  #labels-range-input::-ms-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #4a4a4d;
+    cursor: pointer;
+    border: 2px solid #fff;
+  }
+</style>

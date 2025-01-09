@@ -123,10 +123,9 @@ export const useIterateStore = defineStore('iterate', {
         }
       })
       .then(data => {
-        const { Id } = data;
-        this.id = Id
+        const { id } = data;
+        this.id = id
         this.interval = setInterval(() => this.next(), 1000)
-        this.next()
       });
     },
     stop() {

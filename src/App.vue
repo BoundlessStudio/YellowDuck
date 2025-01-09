@@ -17,7 +17,7 @@ onMounted(() => {
  
 <template>
   <div style="background: linear-gradient(270deg, rgba(255,214,2,1) 0%, rgba(255,223,40,1) 50%, rgba(254,218,0,1) 100%);" >
-    <div class="min-h-screen bg-no-repeat bg-top bg-size-100" style="background-image: url('/background.0.png');">
+    <div id="background-image" class="min-h-screen bg-no-repeat bg-top bg-size-100">
       <RouterView />
       <Footer />
     </div>
@@ -25,4 +25,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
+#background-image {
+  background-image: url('/background.0.png');
+}
 </style>

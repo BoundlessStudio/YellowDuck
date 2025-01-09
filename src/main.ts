@@ -5,6 +5,7 @@ import { createAuth0 } from '@auth0/auth0-vue';
 import router from './router'
 import App from './App.vue'
 
+import 'md-editor-v3/lib/style.css'
 import './style.css'
 
 const AUTH0_DOMAIN = import.meta.env.VITE_AUTH0_DOMAIN

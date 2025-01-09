@@ -10,7 +10,7 @@ export const useIterateStore = defineStore('iterate', {
     return {
       id: '',
       interval: undefined as NodeJS.Timeout | undefined,
-      limit: 100,
+      //limit: 100,
       state: 'Pending' as State,
       progress: 0,
       instructions: '',
@@ -21,6 +21,13 @@ export const useIterateStore = defineStore('iterate', {
     }
   },
   getters: {
+    limit(state): number {
+      if(state.isAuthenticated) {
+        return 1000
+      } else {
+        return 100
+      }
+    },
     collection(state): string[] {
       const collection = state.input.split("\n")
       if(collection.length === 1)
@@ -28,18 +35,16 @@ export const useIterateStore = defineStore('iterate', {
       else
         return collection
     },
-    group(state): number {
-      let collection = state.input.split("\n")
-      if(collection.length === 1) return 0
-      if(collection.length <= 10) return 0 + (collection.length / 10)
-      if(collection.length <= 100) return 1 + (collection.length / 100)
-      if(collection.length <= 1000) return 2 + (collection.length / 1000)
-      if(collection.length <= 10000) return 3 + (collection.length / 10000)
+    group(_): number {
+      if(this.collection.length === 1) return 0
+      if(this.collection.length <= 10) return 0 + (this.collection.length / 10)
+      if(this.collection.length <= 100) return 1 + (this.collection.length / 100)
+      if(this.collection.length <= 1000) return 2 + (this.collection.length / 1000)
+      if(this.collection.length <= 10000) return 3 + (this.collection.length / 10000)
       else return 4
     },
-    isLocked(state): boolean | undefined {
-      let collection = state.input.split("\n")
-      let lock = collection.length >= state.limit ? true : undefined
+    isLocked(_): boolean | undefined {
+      let lock = this.collection.length >= this.limit ? true : undefined
       return lock
     },
     isPending (state): boolean {

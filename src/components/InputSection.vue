@@ -22,7 +22,7 @@ const style = computed(() => {
     <div class="pt-4 rounded ">
       <textarea 
         v-model="iterate.input"
-        placeholder="Enter your items here..."
+        :placeholder="'Enter your items here\nmake sure to separate each item with a new line\nor use a comma to separate items on a single line'"
         rows="5" 
         class="w-full bg-slate-50 border border-gray-600 rounded p-2 focus:outline-none focus:border-gray-400 transition-colors"
       ></textarea>

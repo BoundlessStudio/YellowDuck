@@ -12,6 +12,7 @@
           <div>
             <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
             <ul class="text-gray-400 font-medium">
+              <li class="mb-4"><a href="#" class="hover:underline">Login</a></li>
               <li class="mb-4"><RouterLink to="/subscriptions" class="hover:underline">Subscriptions</RouterLink></li>
               <li class="mb-4"><RouterLink to="/docs" class="hover:underline">Documentation</RouterLink></li>
               <li><RouterLink to="/faqs" class="hover:underline">FAQs</RouterLink></li>
@@ -20,8 +21,8 @@
           <div>
             <h2 class="mb-6 text-sm font-semibold uppercase text-white">Follow us</h2>
             <ul class="text-gray-400 font-medium">
-              <li class="mb-4"><a href="#" class="hover:underline">Github</a></li>
-              <li class="mb-4"><a href="#" class="hover:underline">Twitter</a></li>
+              <li class="mb-4"><a href="https://github.com/BoundlessStudio/YellowDuck" target="_blank" class="hover:underline">Github</a></li>
+              <li class="mb-4"><a href="https://x.com/VenatioStudios" target="_blank" class="hover:underline">Twitter</a></li>
               <li><a href="#" class="hover:underline">Discord</a></li>
             </ul>
           </div>

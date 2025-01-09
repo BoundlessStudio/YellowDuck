@@ -29,7 +29,9 @@ const start = async () => {
           message = 'Unauthorized: Access denied.';
           break;
         case 429:
-          message = 'Timeout: Try again in 1 hour.';
+          const body = await error.text()
+          console.log('RetryAfter', body)
+          message = 'Timeout: Please come back tomorrow.';
           break;
         case 500:
           message = 'Error: We messed up.';

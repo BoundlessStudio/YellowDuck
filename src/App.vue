@@ -1,5 +1,18 @@
 <script setup lang="ts">
+import { reactive, watch, onMounted } from 'vue'
+import { useAuth0 } from '@auth0/auth0-vue'
+import { useIterateStore } from '@/stores/iterate'
 import Footer from '@/components/Footer.vue'
+
+const iterate = useIterateStore()
+const auth = reactive(useAuth0())
+
+onMounted(() => {
+	watch(auth, async (authState) => {
+    const token = authState.isAuthenticated ? await authState.getAccessTokenSilently() : '00000000-0000-0000-0000-000000000000'
+		iterate.authenticateChange(token, authState.isAuthenticated)
+	})
+})
 </script>
  
 <template>

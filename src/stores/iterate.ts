@@ -16,8 +16,8 @@ export const useIterateStore = defineStore('iterate', {
       instructions: '',
       input: '',
       output: [] as string[],
-      status_url: '',
-      status_terminate: '',
+      isAuthenticated: false,
+      token: '',
     }
   },
   getters: {
@@ -59,13 +59,30 @@ export const useIterateStore = defineStore('iterate', {
     },
     isTerminated(state): boolean {
       return state.state === 'Terminated'
+    },
+    headers(state): HeadersInit {
+      if(state.isAuthenticated) {
+        return { 
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + state.token
+        }
+      } else {
+        return { 
+          'Content-Type': 'application/json'
+        }
+      }
     }
   },
   actions: {
+    authenticateChange(token: string, isAuthenticated: boolean) {
+      this.token = token
+      this.isAuthenticated = isAuthenticated
+    },
     next() {
-      fetch(`${URL_BASE}/runtime/webhooks/durabletask/instances/${this.id}?code=${API_CODE}`, {
+      const url = `${URL_BASE}/runtime/webhooks/durabletask/instances/${this.id}?code=${API_CODE}`
+      fetch(url, {
         method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
+        headers: this.headers,
       })
       .then(response => response.json())
       .then(data => {
@@ -93,7 +110,7 @@ export const useIterateStore = defineStore('iterate', {
         console.error('Error:', error)
       });
     },
-    start() {
+    async start() {
       if(this.isLocked === true) {
         throw new Error('Exceeds enumeration limit.')
       }
@@ -107,37 +124,35 @@ export const useIterateStore = defineStore('iterate', {
         throw new Error('Instructions is blank.')
       }
 
-      return fetch(`${URL_BASE}/api/Iterator_Start`, {
+      const url = `${URL_BASE}/api/Iterator_Start`
+      const response = await fetch(url, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: this.headers,
         body: JSON.stringify({
           values: this.collection,
           instructions: this.instructions
         })
       })
-      .then(response => {
-        if(response.ok) {
-          return response.json()
-        } else {
-          throw response
-        }
-      })
-      .then(data => {
-        const { id } = data;
+
+      if(response.ok) {
+        const { id } = await response.json();
         this.id = id
         this.interval = setInterval(() => this.next(), 1000)
         this.next()
-      });
+      } else {
+        throw response
+      }
     },
-    stop() {
-      return fetch(`${URL_BASE}/runtime/webhooks/durabletask/instances/${this.id}/terminate?reason=Canceled&code=${API_CODE}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' }
-      })
-      .catch(error => {
-        console.error('Error:', error)
+    async stop() {
+      try {
+        const url = `${URL_BASE}/runtime/webhooks/durabletask/instances/${this.id}/terminate?reason=Canceled&code=${API_CODE}`;
+        await fetch(url, {
+          method: 'POST',
+          headers: this.headers,
+        })
+      } catch (error) {
         clearInterval(this.interval)
-      });
+      }
     },
     reset() {
       clearInterval(this.interval)

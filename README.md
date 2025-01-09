@@ -15,4 +15,5 @@ Version 1
 - Stripe Subscription
 
 vNext
-- 
+- File Input
+- Range Input

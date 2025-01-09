@@ -10,6 +10,7 @@ const routes = [
   { path: '/faqs', component: () => import('@/views/QuestionsView.vue') },
   { path: '/privacy', component: () => import('@/views/PrivacyView.vue') },
   { path: '/terms', component: () => import('@/views/TermsView.vue') },
+  { path: '/callback', component: () => import('@/views/CallbackView.vue') },
 ]
 
 const router = createRouter({

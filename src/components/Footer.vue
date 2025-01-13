@@ -11,14 +11,14 @@
 </script>
 
 <template>
-  <footer class="my-section bg-zinc-900">
+  <footer class="bg-zinc-900">
     <div class="relative container mx-auto p-4 py-6 lg:py-10">
       <div class="md:flex md:justify-between">
         <div class="mb-6 md:mb-0">
-          <a href="/" class="flex items-center">
-            <img src="https://i.imgur.com/QOhBhO1.png" class="h-8 me-2" alt="Iterator Logo" />
+          <RouterLink to="/" class="flex items-center">
+            <img src="/logo-white.png" class="h-8 me-2" alt="Iterator Logo" />
             <span class="self-center text-2xl tracking-widest whitespace-nowrap text-white" style="font-family: 'Luckiest Guy';">Iterator.one</span>
-          </a>
+          </RouterLink>
           <span class="ml-10 text-sm whitespace-nowrap text-white">Ai enumeration to the end of the iterator, guaranteed!</span>
         </div>
         <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">

@@ -11,8 +11,8 @@
 </script>
 
 <template>
-  <footer class="my-section  bg-zinc-900">
-    <div class="relative mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-10">
+  <footer class="my-section bg-zinc-900">
+    <div class="relative container mx-auto p-4 py-6 lg:py-10">
       <div class="md:flex md:justify-between">
         <div class="mb-6 md:mb-0">
           <a href="/" class="flex items-center">

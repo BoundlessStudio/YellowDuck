@@ -22,7 +22,7 @@ export const useIterateStore = defineStore('iterate', {
       // Auth0
       token: '',
       isAuthenticated: false,
-      limit: 100,
+      plan: 'free',
     }
   },
   getters: {
@@ -32,6 +32,19 @@ export const useIterateStore = defineStore('iterate', {
         return collection[0].split(",")
       else
         return collection
+    },
+    limit(state): number {
+      switch (state.plan) {
+        case 'gold':
+          return 10000;
+        case 'sliver':
+          return 10000;
+        case 'bronze':
+          return 1000;
+        case 'free':
+        default:
+          return 100;
+      }
     },
     group(_): number {
       if(this.collection.length === 1) return 0
@@ -77,10 +90,10 @@ export const useIterateStore = defineStore('iterate', {
     }
   },
   actions: {
-    authenticateLoaded(isAuthenticated: boolean, token: string, limit: number) {
+    authenticateLoaded(isAuthenticated: boolean, token: string, plan: string) {
       this.isAuthenticated = isAuthenticated
       this.token = token
-      this.limit = limit
+      this.plan = plan
     },
     next() {
       const url = `${URL_BASE}/runtime/webhooks/durabletask/instances/${this.id}?code=${API_CODE}`

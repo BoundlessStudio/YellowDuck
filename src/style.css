@@ -10,9 +10,9 @@
   font-weight: 400;
 }
 
-/* html {
+html {
   scroll-behavior: smooth;
-} */
+}
  
 /* Scrollbar width */
 ::-webkit-scrollbar {

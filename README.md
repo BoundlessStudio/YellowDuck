@@ -9,11 +9,23 @@ We created this project to solve one of the major issues that still exist with c
 
 ## ToDo
 
-Version 1
-
-- Auth0 Authentication
 - Stripe Subscription
-
-vNext
-- File Input
-- Range Input
+  - Packages
+    - Bronze (1k)
+    - Silver (10K)
+    - Gold (100K)
+- Extract
+  - A Input File
+  - B Instructions
+  - C Python Code
+  - D Dynamic Session to Run Code
+  - E Save Json Collection File (List of Ids)
+- Enumerate
+  - A Load Json Collection File 
+  - B Instructions
+  - D Durable Orchestration (Start / Stop)
+  - E Save Json Collection File 
+- Evaluate
+  - A
+  - B
+  - C

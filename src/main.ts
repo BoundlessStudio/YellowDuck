@@ -6,6 +6,7 @@ import router from './router'
 import App from './App.vue'
 
 import 'md-editor-v3/lib/style.css'
+import 'vue3-toastify/dist/index.css'
 import './style.css'
 
 const AUTH0_DOMAIN = import.meta.env.VITE_AUTH0_DOMAIN

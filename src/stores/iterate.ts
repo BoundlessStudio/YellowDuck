@@ -8,26 +8,24 @@ const API_CODE = import.meta.env.VITE_API_CODE
 export const useIterateStore = defineStore('iterate', {
   state: () => {
     return {
-      id: '',
+      // Timer
       interval: undefined as NodeJS.Timeout | undefined,
-      //limit: 100,
+      // Instance Id / State / Progression
+      id: '',
       state: 'Pending' as State,
       progress: 0,
+      // Input Instructions / Collection
       instructions: '',
       input: '',
+      // Output
       output: [] as string[],
-      isAuthenticated: false,
+      // Auth0
       token: '',
+      isAuthenticated: false,
+      limit: 100,
     }
   },
   getters: {
-    limit(state): number {
-      if(state.isAuthenticated) {
-        return 1000
-      } else {
-        return 100
-      }
-    },
     collection(state): string[] {
       const collection = state.input.split("\n")
       if(collection.length === 1)
@@ -79,9 +77,10 @@ export const useIterateStore = defineStore('iterate', {
     }
   },
   actions: {
-    authenticateChange(token: string, isAuthenticated: boolean) {
-      this.token = token
+    authenticateLoaded(isAuthenticated: boolean, token: string, limit: number) {
       this.isAuthenticated = isAuthenticated
+      this.token = token
+      this.limit = limit
     },
     next() {
       const url = `${URL_BASE}/runtime/webhooks/durabletask/instances/${this.id}?code=${API_CODE}`

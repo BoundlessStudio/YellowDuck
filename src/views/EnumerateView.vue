@@ -57,7 +57,6 @@ const start = async () => {
     isLocked.value = false
   }
 }
-
 </script>
 
 <template>
@@ -75,10 +74,10 @@ const start = async () => {
                 <h1 class="text-4xl text-center"  style="font-family: 'Luckiest Guy';">Enumerate</h1>
                 <div class="mb-10">
                   <h3 class="text-lg font-semibold">Input File</h3>
-                  <span class="text-xs">Upload file and we will split it into chunks. We'll process each chunk as a separate item for enumeration.</span>  
+                  <span class="text-xs">Upload a chunks file. We'll process each chunk as a separate item for enumeration.</span>  
                   <div class="pt-4">
                     <div class="border-2 border-dashed border-gray-700 rounded p-8 text-center cursor-pointer hover:border-gray-400 transition-colors drop-zone w-full h-full">
-                      <p>Drag and drop files here or click to select files</p>
+                      <p>Drag and drop file here or click to select file</p>
                       <input type="file"  class="hidden" multiple />
                     </div>
                   </div>
@@ -103,7 +102,7 @@ const start = async () => {
                       </svg>
                     </div>
                     <div class="text-sm text-gray-500 absolute end-0 -bottom-6 flex items-center gap-1">
-                      <span>>10K</span>
+                      <span>&#8250;10K</span>
                       <svg v-if="iterate.limit <= 10000" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-yellow-500">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
                       </svg>

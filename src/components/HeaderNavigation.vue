@@ -11,19 +11,19 @@
       <div class="w-full block w-auto pl-8" >
         <ul class="font-medium flex flex-row space-x-8 mt-0">
           <li>
-            <RouterLink to="/extract" class="text-white hover:text-blue-700">Extract</RouterLink>
+            <RouterLink to="/extract" class="text-white hover:text-blue-500">Extract</RouterLink>
           </li>
           <li>
-            <RouterLink to="/enumerate" class="text-white hover:text-blue-700">Enumerate</RouterLink>
+            <RouterLink to="/enumerate" class="text-white hover:text-yellow-500">Enumerate</RouterLink>
           </li>
           <li>
-            <RouterLink to="/evaluate" class="text-white hover:text-blue-700">Evaluate</RouterLink>
+            <RouterLink to="/explore" class="text-white hover:text-violet-500">Explore</RouterLink>
           </li>
           <li>
-            <RouterLink to="/crawl" class="text-white hover:text-blue-700">Crawl</RouterLink>
+            <RouterLink to="/execute" class="text-white hover:text-pink-500">Execute</RouterLink>
           </li>
           <li>
-            <RouterLink to="/generate" class="text-white hover:text-blue-700">Generate</RouterLink>
+            <RouterLink to="/evaluate" class="text-white hover:text-emerald-500">Evaluate</RouterLink>
           </li>
         </ul>
       </div>

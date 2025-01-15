@@ -8,7 +8,7 @@
         <img src="/logo-white.png" class="h-8" alt="Iterator.one Logo" />
         <span class="self-center text-2xl font-semibold whitespace-nowrap text-white" style="font-family: 'Luckiest Guy';">Iterator.one</span>
       </RouterLink>
-      <div class="w-full block w-auto pl-8" >
+      <div class="w-auto pl-8" >
         <ul class="font-medium flex flex-row space-x-8 mt-0">
           <li>
             <RouterLink to="/extract" class="text-white hover:text-blue-500">Extract</RouterLink>

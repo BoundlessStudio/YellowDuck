@@ -33,3 +33,32 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #555; /* Darker gray on hover */
 }
+
+#labels-range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #4a4a4d;
+  cursor: pointer;
+  border: 2px solid #fff;
+}
+
+#labels-range-input::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #4a4a4d;
+  cursor: pointer;
+  border: 2px solid #fff;
+}
+
+#labels-range-input::-ms-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #4a4a4d;
+  cursor: pointer;
+  border: 2px solid #fff;
+}

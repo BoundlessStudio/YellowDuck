@@ -40,7 +40,7 @@ const start = async () => {
         case 429:
           const body = await error.text()
           console.log('RetryAfter', body)
-          message = 'Timeout: Please come back tomorrow.';
+          message = 'Timeout: Please come back in an hour.';
           break;
         case 500:
           message = 'Error: We messed up.';
@@ -66,10 +66,10 @@ const start = async () => {
     <div class="border-dashed border-4" style="background-color: #FFDD24; border-color: #18181b;"></div>
     
     <section class="bg-zinc-900">
-      <div class="bg-no-repeat bg-cover" style="background-image: url('/background.1.png');">
+      <div class="min-h-screen bg-no-repeat bg-cover" style="background-image: url('/background.1.png');">
         <div class="flex lg:flex-row flex-col container mx-auto">
           <section class="lg:basis-1/2 flex items-stretch justify-center p-6 ">
-            <div class="w-full min-h-screen shadow-2xl border-4 border-zinc-900 rounded-2">
+            <div class="w-full shadow-2xl border-4 border-zinc-900 rounded-2">
               <div class="h-full bg-slate-100 p-8 text-gray-900">
                 <h1 class="text-4xl text-center"  style="font-family: 'Luckiest Guy';">Enumerate</h1>
                 <div class="mb-10">
@@ -176,32 +176,5 @@ const start = async () => {
 </template>
 
 <style scoped>
-#labels-range-input::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: #4a4a4d;
-    cursor: pointer;
-    border: 2px solid #fff;
-  }
 
-  #labels-range-input::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: #4a4a4d;
-    cursor: pointer;
-    border: 2px solid #fff;
-  }
-
-  #labels-range-input::-ms-thumb {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: #4a4a4d;
-    cursor: pointer;
-    border: 2px solid #fff;
-  }
 </style>

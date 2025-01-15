@@ -3,7 +3,6 @@ import { defineStore } from 'pinia'
 type State = 'Pending' | 'Running' | 'Completed' | 'Failed' | 'Terminated'
 
 const URL_BASE = import.meta.env.VITE_API_URL
-const API_CODE = import.meta.env.VITE_API_CODE
 
 export const useIterateStore = defineStore('iterate', {
   state: () => {
@@ -80,11 +79,11 @@ export const useIterateStore = defineStore('iterate', {
       if(state.isAuthenticated) {
         return { 
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + state.token
+          'Authorization': 'Bearer ' + state.token,
         }
       } else {
         return { 
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         }
       }
     }
@@ -96,15 +95,15 @@ export const useIterateStore = defineStore('iterate', {
       this.plan = plan
     },
     next() {
-      const url = `${URL_BASE}/runtime/webhooks/durabletask/instances/${this.id}?code=${API_CODE}`
+      const url = `${URL_BASE}/api/Enumerator_Status/${this.id}`
       fetch(url, {
         method: 'GET',
         headers: this.headers,
       })
       .then(response => response.json())
       .then(data => {
-        this.state = data.runtimeStatus
-        this.progress = data?.customStatus?.progress || 0
+        this.state = data.status
+        this.progress = data.progress || 0
 
         switch(this.state) {
           case 'Completed':
@@ -128,20 +127,20 @@ export const useIterateStore = defineStore('iterate', {
       });
     },
     async start() {
-      if(this.isLocked === true) {
-        throw new Error('Exceeds enumeration limit.')
-      }
-      if(this.collection.length === 0) {
-        throw new Error('Input Collection is blank.')
-      }
-      if(this.collection.length === 1 && this.collection[0] === '') {
-        throw new Error('Input Collection is blank.')
-      }
-      if(this.instructions === '') {
-        throw new Error('Instructions is blank.')
-      }
+      // if(this.isLocked === true) {
+      //   throw new Error('Exceeds enumeration limit.')
+      // }
+      // if(this.collection.length === 0) {
+      //   throw new Error('Input Collection is blank.')
+      // }
+      // if(this.collection.length === 1 && this.collection[0] === '') {
+      //   throw new Error('Input Collection is blank.')
+      // }
+      // if(this.instructions === '') {
+      //   throw new Error('Instructions is blank.')
+      // }
 
-      const url = `${URL_BASE}/api/Iterator_Start`
+      const url = `${URL_BASE}/api/Enumerator_Start`
       const response = await fetch(url, {
         method: 'POST',
         headers: this.headers,
@@ -162,10 +161,13 @@ export const useIterateStore = defineStore('iterate', {
     },
     async stop() {
       try {
-        const url = `${URL_BASE}/runtime/webhooks/durabletask/instances/${this.id}/terminate?reason=Canceled&code=${API_CODE}`;
+        const url = `${URL_BASE}/api/Enumerator_Terminate`
         await fetch(url, {
           method: 'POST',
           headers: this.headers,
+          body: JSON.stringify({
+            instance_id: this.id
+          })
         })
       } catch (error) {
         clearInterval(this.interval)

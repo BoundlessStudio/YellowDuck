@@ -1,13 +1,6 @@
 <script setup lang="ts">
-  import { useAuth0 } from '@auth0/auth0-vue';
-  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
-
-  const loginHandler = () => {
-    loginWithRedirect()
-  }
-  const logoutHandler = () => {
-    logout({ logoutParams: { returnTo: window.location.origin } });
-  }
+  import { useUserStore } from '@/stores/user'
+  const store = useUserStore()
 </script>
 
 <template>
@@ -25,8 +18,8 @@
           <div>
             <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase text-white">Resources</h2>
             <ul class="text-gray-400 font-medium">
-              <li v-if="isAuthenticated" class="mb-4"><a href="#" @click="logoutHandler" class="hover:underline">Logout</a></li>
-              <li v-else class="mb-4"><a href="#" @click="loginHandler" class="hover:underline">Login</a></li>
+              <li v-if="store.isAuthenticated" class="mb-4"><a href="#" @click="store.logout" class="hover:underline">Logout</a></li>
+              <li v-else class="mb-4"><a href="#" @click="store.login" class="hover:underline">Login</a></li>
               <li class="mb-4"><RouterLink to="/subscriptions" class="hover:underline">Subscriptions</RouterLink></li>
               <li class="mb-4"><RouterLink to="/docs" class="hover:underline">Documentation</RouterLink></li>
               <li><RouterLink to="/faqs" class="hover:underline">FAQs</RouterLink></li>

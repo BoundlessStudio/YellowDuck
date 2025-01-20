@@ -14,10 +14,10 @@
             <RouterLink to="/extract" class="text-white hover:text-blue-500">Extract</RouterLink>
           </li>
           <li>
-            <RouterLink to="/enumerate" class="text-white hover:text-yellow-500">Enumerate</RouterLink>
+            <RouterLink to="/explore" class="text-white hover:text-violet-500">Explore</RouterLink>
           </li>
           <li>
-            <RouterLink to="/explore" class="text-white hover:text-violet-500">Explore</RouterLink>
+            <RouterLink to="/enumerate" class="text-white hover:text-yellow-500">Enumerate</RouterLink>
           </li>
           <li>
             <RouterLink to="/execute" class="text-white hover:text-pink-500">Execute</RouterLink>

@@ -1,13 +1,6 @@
 <script setup lang="ts">
-  import { useAuth0 } from '@auth0/auth0-vue';
-  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
-  
-  const loginHandler = () => {
-    loginWithRedirect();
-  }
-  const logoutHandler = () => {
-    logout();
-  }
+  import { useUserStore } from '@/stores/user'
+  const store = useUserStore()
 </script>
 
 <template>
@@ -18,33 +11,27 @@
           Iterator.one
         </h1>
         <p class="text-white py-4">
-          In today’s data-driven world, you need an AI process that won’t skip a beat—or a single element. That is where Iterators shine.
+          Meet the <b>Iterator.one</b>, your trusty sidekick for everything loop-tastic! 
+          We all know AI can be a tough nut to crack, especially when it comes to looping through tasks. 
+          But guess what? Iteration is exactly what makes the magic happen! 
         </p>
-        <p class="text-white py-1 leading-relaxed">
-          <strong>No Data Left Behind</strong>
-          Our iterator-based method guarantees you process every last piece of information. No missed items, no abrupt truncations.
+        <p class="text-white py-4">
+          All these essential tasks—Extract (chunkify your data!), Enumerate (transform it!), Explore (crawl the web!), Execute (run your tasks!), and Evaluate (compare results!)—require repeating cycles. That’s where our Iterator shines, delivering the looping muscle behind each process to keep your AI rolling smoothly.
+          No truncation, No laziness, just enumeration to the end of the iterator, guaranteed!
         </p>
-        <p class="text-white py-1 leading-relaxed">
-          <strong>Uninterrupted Flow</strong>
-          By automatically stepping through each chunk, you maintain momentum in your AI tasks—without the hassle of manual handling.
-        </p>
-        <p class="text-white py-1 leading-relaxed">
-          <strong>Scalable & Efficient</strong>
-          As your data grows, our iterator-driven approach effortlessly scales, need more buy more, so you can focus on innovation.
-        </p>
-        <p class="text-white py-1 leading-relaxed">
-          <strong>Holistic & Independent</strong>
-          From extraction to enumerate, explore to evaluate, each tool is optimized to work together, but each tool is isolated allowing, you to mix and match to fit your needs.
+        <p class="text-white py-4">
+          Think of it as the ultimate ride, whisking you through each loop while you sit back and watch your AI do the heavy lifting. 
+          Ready to hop on? Let’s iterate!
         </p>
         <div class="py-10 flex gap-2">
           <RouterLink to="/extract" class="py-2 px-6 w-full rounded transition-colors inline-flex items-center justify-center bg-sky-500 hover:bg-sky-600 text-white">
             Extract
           </RouterLink>
-          <RouterLink to="/enumerate" class="py-2 px-6 w-full rounded transition-colors inline-flex items-center justify-center bg-yellow-500 hover:bg-yellow-600 text-white">
-            Enumerate
-          </RouterLink>
           <RouterLink to="/explore" class="py-2 px-6 w-full rounded transition-colors inline-flex items-center justify-center bg-violet-500 hover:bg-violet-600 text-white">
             Explore
+          </RouterLink>
+          <RouterLink to="/enumerate" class="py-2 px-6 w-full rounded transition-colors inline-flex items-center justify-center bg-yellow-500 hover:bg-yellow-600 text-white">
+            Enumerate
           </RouterLink>
           <RouterLink to="/execute" class="py-2 px-6 w-full rounded transition-colors inline-flex items-center justify-center bg-pink-500 hover:bg-pink-600 text-white">
             Execute
@@ -59,8 +46,8 @@
       </div>
     </div>
     <div class="absolute top-5 right-5">
-      <a v-if="isAuthenticated" href="#" @click="logoutHandler" class="inline-flex text-gray-700 bg-gray-100 border-0 py-1 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Logout</a>
-      <a v-else href="#" @click="loginHandler" class="inline-flex text-gray-700 bg-gray-100 border-0 py-1 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Login</a>
+      <a v-if="store.isAuthenticated" href="#" @click="store.logout" class="inline-flex text-gray-700 bg-gray-100 border-0 py-1 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Logout</a>
+      <a v-else href="#" @click="store.login" class="inline-flex text-gray-700 bg-gray-100 border-0 py-1 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Login</a>
     </div>
   </section>
 </template>

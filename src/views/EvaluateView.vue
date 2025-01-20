@@ -2,9 +2,6 @@
 import Header from '@/components/HeaderNavigation.vue'
 import Footer from '@/components/Footer.vue'
 
-import { useIterateStore } from '@/stores/iterate'
-const iterate = useIterateStore()
-
 </script>
 
 <template>

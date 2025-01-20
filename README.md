@@ -16,6 +16,10 @@ We created this project to solve one of the major issues that still exist with c
     - Silver
     - Gold
 - Extract
+  - File Upload
+    - Open File Dialog
+    - Drag/Drop
+    - Submit Button
   - Inputs
     - CSV: on row
     - TSV: on row
@@ -37,8 +41,16 @@ We created this project to solve one of the major issues that still exist with c
   - Output
     - JSON: String[]
 
+
+Add File Store 
+- Add File (I/O)
+- Display Floating Button 
+  - to Add to File Upload of Current Page
+  - to Show file history
+
 ## Media-Types
 https://github.com/microsoft/markitdown
+https://crawl4ai.com/mkdocs/
 
 ### application
 - application/json - [MarkItDown]

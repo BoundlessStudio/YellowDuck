@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineProps, defineEmits, watch, onMounted } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 
 const props = defineProps({
   /* Use modelValue so it plays nicely with v-model:show in Vue 3 */

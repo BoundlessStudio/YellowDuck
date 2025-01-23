@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'luckiest-guy': ["Luckiest Guy", "sans-serif"],
+      },
       backgroundSize: {
         'auto': 'auto',
         'cover': 'cover',

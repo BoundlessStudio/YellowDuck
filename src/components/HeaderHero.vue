@@ -7,7 +7,7 @@
   <section class="relative bg-zinc-900 text-gray-600 body-font">
     <div class="container mx-auto flex py-10 flex-row items-center">
       <div class="lg:flex-grow mt-0 w-1.5/2 pr-24 md:pr-16 flex flex-col items-start text-left mb-0 ">
-        <h1 class="font-extrabold leading-9 tracking-widest mb-3 text-white text-5xl leading-normal" style="font-family: 'Luckiest Guy';">
+        <h1 class="font-extrabold leading-9 tracking-widest mb-3 text-white text-5xl leading-normal font-luckiest-guy" >
           Iterator.one
         </h1>
         <p class="text-white py-4">
@@ -16,7 +16,7 @@
           But guess what? Iteration is exactly what makes the magic happen! 
         </p>
         <p class="text-white py-4">
-          All these essential tasks—Extract (chunkify your data!), Enumerate (transform it!), Explore (crawl the web!), Execute (run your tasks!), and Evaluate (compare results!)—require repeating cycles. That’s where our Iterator shines, delivering the looping muscle behind each process to keep your AI rolling smoothly.
+          All these essential tasks—Extract (chunkify your data!), Enumerate (transform it!), Explore (crawl a web page!), Execute (run your tasks!), Evaluate (filter it!), and Examine (prompt better!)—require repeating cycles. That’s where our Iterator shines, delivering the looping muscle behind each process to keep your AI rolling smoothly.
           No truncation, No laziness, just enumeration to the end of the iterator, guaranteed!
         </p>
         <p class="text-white py-4">
@@ -33,11 +33,14 @@
           <RouterLink to="/enumerate" class="py-2 px-6 w-full rounded transition-colors inline-flex items-center justify-center bg-yellow-500 hover:bg-yellow-600 text-white">
             Enumerate
           </RouterLink>
-          <RouterLink to="/execute" class="py-2 px-6 w-full rounded transition-colors inline-flex items-center justify-center bg-pink-500 hover:bg-pink-600 text-white">
+          <RouterLink to="/execute" class="py-2 px-6 w-full rounded transition-colors inline-flex items-center justify-center bg-rose-500 hover:bg-rose-600 text-white">
             Execute
           </RouterLink>
           <RouterLink to="/evaluate" class="py-2 px-6 w-full rounded transition-colors inline-flex items-center justify-center bg-emerald-500 hover:bg-emerald-600 text-white">
             Evaluate
+          </RouterLink>
+          <RouterLink to="/enhance" class="py-2 px-6 w-full rounded transition-colors inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white">
+            Enhance
           </RouterLink>
         </div>
       </div>

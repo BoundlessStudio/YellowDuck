@@ -15,9 +15,9 @@ import Footer from '@/components/Footer.vue'
         <div class="flex lg:flex-row flex-col container mx-auto">
           <section class="lg:basis-1/2 flex items-stretch justify-center p-6 ">
             <div class="w-full shadow-2xl border-4 border-zinc-900 rounded-2">
-              <div class="h-full bg-slate-100 p-8 text-gray-900">
-                <h1 class="text-4xl text-center"  style="font-family: 'Luckiest Guy';">Evaluate</h1>
-                <img src="/coming-soon.png">
+              <div class="h-96 bg-slate-100 p-8 text-gray-900">
+                <h1 class="text-4xl text-center font-luckiest-guy" >Evaluate</h1>
+                <p class="text-center">Filter the input list based on instructions</p>
               </div>
             </div>
           </section>

@@ -30,13 +30,19 @@ import Footer from '@/components/Footer.vue'
           Rapidly crawl and gather further insights from the Web. Stay ahead of emerging trends, outmaneuver competitors, and tap into real-time market shifts. Our robust exploration capabilities put you at the forefront of industry intelligence, fueling your innovation and strategic edge.
         </p>
         <h2>
-          <span class="bg-pink-100 text-pink-800 text-2xl font-medium me-2 px-2.5 py-0.5 rounded-lg">Execute</span>
+          <span class="bg-rose-100 text-rose-600 text-2xl font-medium me-2 px-2.5 py-0.5 rounded-lg">Execute</span>
         </h2>
         <p class="p-4">
           Run a sequence of tasks, for each chunk. Automate repetitive processes, increase operational speed, and minimize human error. With our execution framework, you can unlock higher efficiency, streamline your pipeline, and deliver on projects with confidence.
         </p>
         <h2>
           <span class="bg-emerald-100 text-emerald-800 text-2xl font-medium me-2 px-2.5 py-0.5 rounded-lg">Evaluate</span>
+        </h2>
+        <p class="p-4">
+          Analyze and refine data and prompts, taking your results to the next level of accuracy. Our cutting-edge evaluation methods empower you to continually optimize outputs, sharpen your strategies, and make data-driven decisions that propel your business forward.
+        </p>
+        <h2>
+          <span class="bg-orange-100 text-orange-800 text-2xl font-medium me-2 px-2.5 py-0.5 rounded-lg">Evaluate</span>
         </h2>
         <p class="p-4">
           Analyze and refine data and prompts, taking your results to the next level of accuracy. Our cutting-edge evaluation methods empower you to continually optimize outputs, sharpen your strategies, and make data-driven decisions that propel your business forward.

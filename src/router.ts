@@ -9,6 +9,7 @@ const routes = [
   { path: '/explore', component: () => import('@/views/ExploreView.vue')},
   { path: '/execute', component: () => import('@/views/ExecuteView.vue')},
   { path: '/evaluate', component: () => import('@/views/EvaluateView.vue')},
+  { path: '/enhance', component: () => import('@/views/EnhanceView.vue')},
   { path: '/about', component: () => import('@/views/AboutView.vue')},
   { path: '/subscriptions', component: () => import('@/views/SubscriptionsView.vue') },
   { path: '/docs', component: () => import('@/views/DocumentationView.vue') },

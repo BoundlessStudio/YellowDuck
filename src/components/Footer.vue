@@ -10,7 +10,7 @@
         <div class="mb-6 md:mb-0">
           <RouterLink to="/" class="flex items-center">
             <img src="/logo-white.png" class="h-8 me-2" alt="Iterator Logo" />
-            <span class="self-center text-2xl tracking-widest whitespace-nowrap text-white" style="font-family: 'Luckiest Guy';">Iterator.one</span>
+            <span class="self-center text-2xl tracking-widest whitespace-nowrap text-white font-luckiest-guy">Iterator.one</span>
           </RouterLink>
           <span class="ml-10 text-sm whitespace-nowrap text-white">Ai enumeration to the end of the iterator, guaranteed!</span>
         </div>

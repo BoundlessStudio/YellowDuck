@@ -1,59 +1,68 @@
 import { defineStore } from 'pinia'
 import { fileExtractor, ExtractorModel } from '@/api/extract'
 import { Status } from '@/api/general'
+import { computed, ref } from 'vue'
 
-export const useExtractStore = defineStore('extract', {
-  state: () => {
-    return {
-      status: 'Pending' as Status,
-      progress: 0,
-      input: undefined as File | undefined,
-      output: undefined as ExtractorModel | undefined,
-      cts: new AbortController()
+export const useExtractStore = defineStore('extract', () => {
+  // State
+  const status = ref<Status>('Pending')
+  const progress = ref(0)
+  const input = ref<File | undefined>(undefined)
+  const output = ref<ExtractorModel | undefined>(undefined)
+  const cts = ref(new AbortController())
+
+  // Getters
+  const size = computed(() => input.value?.size || 0)
+  const isPending = computed(() => status.value === 'Pending')
+  const isRunning = computed(() => status.value === 'Running')
+  const isDone = computed(() => 
+    ['Completed', 'Terminated', 'Failed'].includes(status.value)
+  )
+  const isFailed = computed(() => status.value === 'Failed')
+  const isCompleted = computed(() => status.value === 'Completed')
+  const isTerminated = computed(() => status.value === 'Terminated')
+
+  // Actions
+  async function extract(): Promise<void> {
+    try {
+      cts.value = new AbortController()
+      status.value = 'Running'
+      output.value = await fileExtractor(input.value, cts.value.signal)
+      status.value = 'Completed'
+    } catch (error) {
+      status.value = 'Failed'
     }
-  },
-  getters: {
-    size(state) {
-      return state.input?.size || 0
-    },
-    isPending (state): boolean {
-      return state.status === 'Pending'
-    },
-    isRunning(state): boolean {
-      return state.status === 'Running'
-    },
-    isDone(state): boolean {
-      return state.status === 'Completed' || state.status === 'Terminated' || state.status === 'Failed';
-    },
-    isFailed(state): boolean {
-      return state.status === 'Failed'
-    },
-    isCompleted(state): boolean {
-      return state.status === 'Completed'
-    },
-    isTerminated(state): boolean {
-      return state.status === 'Terminated'
-    },
-  },
-  actions: {
-    async extract(): Promise<void> {
-      try {
-        this.cts = new AbortController()
-        this.status = 'Running'
-        this.output = await fileExtractor(this.input, this.cts.signal)
-        this.status = 'Completed'
-      } catch (error) {
-        this.status = 'Failed' 
-      }
-    },
-    stop(){
-      this.status = 'Terminated'
-      this.cts.abort('user terminated')
-    },
-    reset() {
-      this.status = 'Pending'
-      this.input = undefined
-      this.output = undefined
-    }
-  },
+  }
+
+  function stop() {
+    status.value = 'Terminated'
+    cts.value.abort('user terminated')
+  }
+
+  function reset() {
+    status.value = 'Pending'
+    input.value = undefined
+    output.value = undefined
+  }
+
+  return {
+    // State
+    status,
+    progress,
+    input,
+    output,
+    cts,
+    // Getters
+    size,
+    isPending,
+    isRunning,
+    isDone,
+    isFailed,
+    isCompleted,
+    isTerminated,
+    // Actions
+    extract,
+    stop,
+    reset,
+  }
 })

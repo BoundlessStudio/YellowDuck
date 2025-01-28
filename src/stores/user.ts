@@ -1,49 +1,54 @@
-import { client } from '../plugins/auth0';
+import { useAuth0 } from '@auth0/auth0-vue'
 import { defineStore } from 'pinia'
-import { unref } from 'vue';
+import { computed } from 'vue'
 
-export type Plan = 'gold' | 'sliver' | 'bronze' | 'free'
+export type Plan = 'gold' | 'silver' | 'bronze' | 'free'
 
-export const useUserStore = defineStore('user', {
-  state: () => {
-    return {
-      client: unref(client),
-    }
-  },
-  getters: {
-    isLoading(state): boolean {
-      return state.client.isLoading
-    },
-    isAuthenticated(state): boolean {
-      return state.client.isAuthenticated
-    },
-    plan(state): Plan {
-      return state.client.idTokenClaims?.plan || 'free'
-    }
-    // claims(state): IdToken | undefined {
-    //   return state.client.idTokenClaims
-    // },
-    // user(state): User | undefined {
-    //   return state.client.user
-    // },
-  },
-  actions: {
-    async headers(headers: any = undefined): Promise<HeadersInit> {
-      if(this.isAuthenticated) {
-        const token = await this.client.getAccessTokenSilently();
-        return { 
-          ...headers,
-          'Authorization': 'Bearer ' + token,
-        }
-      } else {
-        return { ...headers };
+export const useUserStore = defineStore('user', () => {
+  const {
+    isAuthenticated,
+    isLoading,
+    //user,
+    idTokenClaims,
+    getAccessTokenSilently,
+    loginWithRedirect,
+    logout
+  } = useAuth0()
+
+  const plan = computed<Plan>(() => {
+    return idTokenClaims.value?.plan ?? 'free'
+  })
+
+  async function headers(headers: Record<string, string> = {}): Promise<Record<string, string>> {
+    if (isAuthenticated.value) {
+      const token = await getAccessTokenSilently()
+      return {
+        ...headers,
+        Authorization: 'Bearer ' + token
       }
-    },
-    async login(): Promise<void> {
-      await this.client.loginWithRedirect()
-    },
-    async logout(): Promise<void> {
-      await this.client.logout({ logoutParams: { returnTo: window.location.origin } });
     }
-  },
+    return headers
+  }
+
+  async function loginHandler() {
+    await loginWithRedirect()
+  }
+
+  async function logoutHandler() {
+    await logout({ logoutParams: { returnTo: window.location.origin } })
+  }
+
+  return {
+    // Refs from Auth0
+    isAuthenticated,
+    isLoading,
+
+    // Computed
+    plan,
+
+    // Methods
+    headers,
+    login: loginHandler,
+    logout: logoutHandler
+  }
 })

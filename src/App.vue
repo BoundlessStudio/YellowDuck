@@ -2,6 +2,7 @@
 import Loading from '@/components/Loading.vue'
 import { useUserStore } from '@/stores/user'
 const store = useUserStore()
+
 </script>
  
 <template>

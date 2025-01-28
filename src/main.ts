@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { createAuth0 } from '@auth0/auth0-vue'
-import { exposeAuth0 } from './plugins/auth0'
 import FloatingVue from 'floating-vue'
 
 import router from './router'
@@ -24,13 +23,12 @@ const auth0 = createAuth0({
     redirect_uri: window.location.origin
   }
 })
-const authPlugin = exposeAuth0()
+
 const pinia = createPinia()
 const app = createApp(App)
 
 app.use(router)
 app.use(pinia)
 app.use(auth0)
-app.use(authPlugin)
 app.use(FloatingVue)
 app.mount('#app')

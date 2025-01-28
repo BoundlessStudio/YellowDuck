@@ -4,10 +4,32 @@ import { Status } from '@/api/general'
 import { computed, ref } from 'vue'
 
 export const useExtractStore = defineStore('extract', () => {
+  // Const
+  const extensions = [
+    '.json',
+    '.docx',
+    '.pdf',
+    '.xls',
+    '.xlsx',
+    '.csv',
+    '.ics',
+    '.html',
+    '.md',
+    '.txt',
+    '.rtf',
+    // '.xml',
+    // '.zip',
+    // '.sqlite3',
+    // '.mdb',
+    // '.py'
+  ]
+  
   // State
   const status = ref<Status>('Pending')
   const progress = ref(0)
   const input = ref<File | undefined>(undefined)
+  const evaluate = ref('')
+  const enumerate = ref('')
   const output = ref<ExtractorModel | undefined>(undefined)
   const cts = ref(new AbortController())
 
@@ -46,10 +68,14 @@ export const useExtractStore = defineStore('extract', () => {
   }
 
   return {
+    // Const
+    extensions,
     // State
     status,
     progress,
     input,
+    evaluate,
+    enumerate,
     output,
     cts,
     // Getters

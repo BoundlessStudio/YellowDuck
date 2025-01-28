@@ -4,6 +4,7 @@ import HomeView from '@/views/HomeView.vue'
 
 const routes = [
   { path: '/', component: HomeView },
+  { path: '/combined', component: () => import('@/views/CombinedView.vue')},
   { path: '/extract', component: () => import('@/views/ExtractView.vue')},
   { path: '/enumerate', component: () => import('@/views/EnumerateView.vue')},
   { path: '/explore', component: () => import('@/views/ExploreView.vue')},
